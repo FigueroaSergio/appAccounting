@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    style="@style/cardview">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <TextView
+            android:id="@+id/idDb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textStyle="bold"
+            style="@style/Texts"
+            tools:text="# 01"
+            android:textSize="22sp"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center_horizontal" />
+        <TextView
+            android:id="@+id/descriptionDb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="6"
+            style="@style/Texts"
+            android:text="Description"/>
+        <TextView
+            android:id="@+id/dateDb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            style="@style/Texts"
+            android:text="00/00/00"/>
+        <TextView
+            android:id="@+id/priceDb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            style="@style/Texts"
+            android:text="$5.000"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
