@@ -39,20 +39,8 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ListExpenses::class.java)
             startActivity(intent)
 
-            val view = View.inflate(this@MainActivity,R.layout.costum_dialog,null)
-            val builder = AlertDialog.Builder(this@MainActivity)
-            builder.setView(view)
-            val dialog = builder.create()
-            dialog.show()
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            view.dialogOk.setOnClickListener{
-                dialog.dismiss()
-            }
-            view.dialogCancel.setOnClickListener{
-                dialog.dismiss()
-            }
 
-/*val customdialog = CustomDialog.Builder()
+val customdialog = CustomDialog.Builder()
                 .setTitle("Precaucion")
                 .setDescription("Esta seguro que desea eliminar")
                 .setPositiveText("Ok")
@@ -60,18 +48,20 @@ class MainActivity : AppCompatActivity() {
                 .build()
 
 
-            customdialog.show(supportFragmentManager,"custom dialog 1")*/
+            customdialog.show(supportFragmentManager,"custom dialog 1")
 
-            /*customdialog.setDialogButtonListener(object : CustomDialog.DialogClickListener{
+
+            customdialog.setDialogButtonListener(object : CustomDialog.DialogClickListener{
                 override fun onPositiveBtn() {
-                    Toast.makeText(this@MainActivity, "hello", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "hello",
+                    Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onNegativeBtn() {
                     customdialog.dismiss()
                 }
 
-            })*/
+            })
 
         }
 
