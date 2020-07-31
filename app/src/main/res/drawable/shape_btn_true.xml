@@ -3,9 +3,9 @@
 <corners
     android:radius="20dp"
     />
-    <solid
-        android:color="@color/colorPrimary"
-        />
+   <gradient
+       android:startColor="@color/colorPrimary"
+       android:endColor="@color/colorPrimaryDark"/>
     <size android:height="40dp"
         android:width="80dp"/>
 <padding
