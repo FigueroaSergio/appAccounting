@@ -39,14 +39,18 @@ class MainActivity : AppCompatActivity() {
                 plh_description.text.clear()
                 plh_value.text.clear()
 
-                hidenkeyboard()
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(currentFocus!!.windowToken,0)
+                //hidenkeyboard()
             }
         }
         val x:Boolean = plh_description.hasFocus()
+        plh_value.setOnFocusChangeListener{ view,hasFocus ->
+            if (!hasFocus){
+                Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show()
 
-       if (!plh_value.hasFocus()){
-           Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show()
-       }
+            }
+        }
 
 
 
@@ -65,21 +69,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-  fun doSomething() {
-        val view= this.currentFocus
-        if (view !=null){
-            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken,0)
-        }
-    }
 
 
-    fun ocultarTeclado(){
-
-        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(currentFocus!!.windowToken,0)
-
-    }
 
 
     fun hidenkeyboard()
