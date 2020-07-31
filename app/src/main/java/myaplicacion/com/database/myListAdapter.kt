@@ -7,8 +7,19 @@ import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
-class myListAdapter(private val datos: ArrayList<Accounts>) :
+class myListAdapter(private val datos: ArrayList<Accounts>,
+                    private val Listener:onClickListener) :
     RecyclerView.Adapter<myListAdapter.myHolder>() {
+    interface onClickListener{
+        fun onItemClick(dato:Accounts,position: Int)
+    }
+    fun eliminarItem(position: Int){
+        datos.removeAt(position)
+        notifyItemRemoved(position)
+    }
+    fun getElements(): ArrayList<Accounts> {
+        return datos
+    }
 
     class myHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
         val id: TextView = itemview.findViewById(R.id.idDb)
@@ -35,5 +46,8 @@ class myListAdapter(private val datos: ArrayList<Accounts>) :
         holder.date.text = dato.date
         holder.value.text = dato.price.toString()
 
+        holder.itemView.setOnClickListener{
+            Listener.onItemClick(dato,holder.adapterPosition)
+        }
     }
 }
