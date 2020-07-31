@@ -1,6 +1,7 @@
 package myaplicacion.com.database
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 
@@ -17,9 +18,10 @@ import androidx.core.content.ContextCompat.getSystemService
 import kotlinx.android.synthetic.main.activity_main.*
 
 
-
 class MainActivity : AppCompatActivity() {
     lateinit var accountsDao: AccountsDao
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -39,16 +41,18 @@ class MainActivity : AppCompatActivity() {
                 plh_description.text.clear()
                 plh_value.text.clear()
 
-                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(currentFocus!!.windowToken,0)
-                //hidenkeyboard()
+
+                hidenkeyboard()
             }
         }
-        val x:Boolean = plh_description.hasFocus()
-        plh_value.setOnFocusChangeListener{ view,hasFocus ->
-            if (!hasFocus){
-                Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show()
 
+        mainView.setOnClickListener { view ->
+            // Aca tambien se puede poner la funcion hidekeyboard
+            if (view.hasFocus()) {
+
+                Toast.makeText(this, "tocando patalla", Toast.LENGTH_SHORT).show()
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(view.windowToken, 0)
             }
         }
 
@@ -57,30 +61,25 @@ class MainActivity : AppCompatActivity() {
 
 
         myAccount.setOnClickListener {
-
             val intent = Intent(this, ListExpenses::class.java)
             startActivity(intent)
-
-
-
-
         }
 
 
     }
-
-
-
-
-
-    fun hidenkeyboard()
-    {
-        val view = this.currentFocus
-        if (view !=null){
+    fun View.hide(){
+        if (this.hasFocus()){
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(view.windowToken,0)
+            imm.hideSoftInputFromWindow(this.windowToken, 0)
         }
-        else{
+    }
+
+    fun hidenkeyboard() {
+        val view = this.currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        } else {
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         }
 
