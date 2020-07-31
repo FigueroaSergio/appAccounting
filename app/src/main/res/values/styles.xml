@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
@@ -40,5 +40,10 @@
 
     <style name="Theme_Dialog_Transparent" parent="Theme.AppCompat.Dialog">
         <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+    <style name="SplashScreen" parent="AppTheme">
+        <item name="android:statusBarColor" tools:targetApi="21">@android:color/white</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
     </style>
 </resources>
