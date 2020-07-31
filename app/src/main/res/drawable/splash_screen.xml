@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<layer-list xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:ignore="ExtraText">
 <item android:drawable="@android:color/white"/>
-    <item android:drawable="@drawable/ic_baseline_save_24"
+    <item android:drawable="@drawable/logo"
         android:width="200dp"
         android:height="200dp"
         android:gravity="center"/>
 
-
+// logo by: https://www.freepik.es/vectores/logo'>Vector de Logo creado por freepik - www.freepik.es
 
 </layer-list>

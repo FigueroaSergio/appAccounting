@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.concurrent.thread
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,8 +24,11 @@ class MainActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(1500)
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         accountsDao = appDatabase.getInstance(this).accountsDao()
 
