@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Database</string>
     <string name="EdtMainDes">What did you buy ?</string>
-    <string name="EdtMainVaulue">How much did you spen?</string>
+    <string name="EdtMainVaulue">How much did you spend?</string>
     <string name="btnSend">SEND</string>
     <string name="persoDes">Icon dor accs to the Accounts</string>
 </resources>

@@ -44,8 +44,8 @@ class ListExpenses : AppCompatActivity(),myListAdapter.onClickListener {
 
     override fun onItemClick(dato:Accounts,position:Int) {
         val customdialog = CustomDialog.Builder()
-            .setTitle("Precaucion")
-            .setDescription("Esta seguro que desea eliminar")
+            .setTitle("Caution")
+            .setDescription("Are you sure you want to delete the item ${dato.description} $${dato.price}")
             .setPositiveText("Ok")
             .setNegativeText("Cancel")
             .build()
@@ -58,6 +58,7 @@ class ListExpenses : AppCompatActivity(),myListAdapter.onClickListener {
             override fun onPositiveBtn() {
                 accountsDao.deleteAccount(dato)
                 myListAdapter.eliminarItem(position)
+                myListAdapter.rechargerNumber()
                 printTotal(myListAdapter.getElements())
                 customdialog.dismiss()
             }

@@ -20,6 +20,9 @@ class myListAdapter(private val datos: ArrayList<Accounts>,
     fun getElements(): ArrayList<Accounts> {
         return datos
     }
+    fun rechargerNumber(){
+        notifyDataSetChanged()
+    }
 
     class myHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
         val id: TextView = itemview.findViewById(R.id.idDb)
@@ -41,7 +44,7 @@ class myListAdapter(private val datos: ArrayList<Accounts>,
     override fun onBindViewHolder(holder: myHolder, position: Int) {
 
         val dato = datos[position]
-        holder.id.text = dato.id.toString()
+        holder.id.text = position.toString()
         holder.description.text = dato.description
         holder.date.text = dato.date
         holder.value.text = dato.price.toString()
