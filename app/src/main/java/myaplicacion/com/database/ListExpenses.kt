@@ -1,17 +1,10 @@
 package myaplicacion.com.database
 
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.LinearLayout
-import android.widget.Toast
-
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_list_expenses.*
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
 
 class ListExpenses : AppCompatActivity(),myListAdapter.onClickListener {
 
@@ -34,7 +27,7 @@ class ListExpenses : AppCompatActivity(),myListAdapter.onClickListener {
        printTotal(datos)
     }
     fun printTotal(datos:ArrayList<Accounts>){
-        var total:Int=0
+        var total =0
         for (i in datos){
             val x = i.price
             total += x
