@@ -1,14 +1,18 @@
 package myaplicacion.com.database
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class myListAdapter(private val datos: ArrayList<Accounts>,
-                    private val Listener:onClickListener) :
+                    private val Listener:onClickListener,val context: Context) :
     RecyclerView.Adapter<myListAdapter.myHolder>() {
     interface onClickListener{
         fun onItemClick(dato:Accounts,position: Int)
@@ -41,6 +45,7 @@ class myListAdapter(private val datos: ArrayList<Accounts>,
 
     override fun getItemCount(): Int = datos.size
 
+
     override fun onBindViewHolder(holder: myHolder, position: Int) {
 
         val dato = datos[position]
@@ -48,7 +53,11 @@ class myListAdapter(private val datos: ArrayList<Accounts>,
         holder.description.text = dato.description
         holder.date.text = dato.date
         holder.value.text = dato.price.toString()
-
+        if (dato.moreOrless){
+            holder.id.setTextColor(Color.parseColor("#03DA64"))}
+        else{
+            holder.id.setTextColor(Color.parseColor("#FF4040"))
+        }
         holder.itemView.setOnClickListener{
             Listener.onItemClick(dato,holder.adapterPosition)
         }

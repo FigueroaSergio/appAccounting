@@ -2,72 +2,87 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
+    android:background="@drawable/shape_btn_false"
 
-    android:id="@+id/mainView"
     android:clickable="true"
     android:focusable="true"
     android:gravity="center"
-    android:background="@drawable/shape_btn_false">
+    android:orientation="vertical"
+    tools:context=".MainActivity">
 
     <EditText
         android:id="@+id/plh_description"
         android:layout_width="@dimen/edtWidth"
         android:layout_height="@dimen/edtHeight"
-        android:maxLength="12"
-        android:gravity="center"
-
-
-
-        android:imeOptions="actionNext"
-        android:nextFocusForward="@id/plh_value"
-        android:background="@drawable/shape_btn_false"
-        android:hint="@string/EdtMainDes"
         android:autofillHints="Nada"
-        android:inputType="text" />
+        android:background="@drawable/shape_btn_false"
+
+
+        android:gravity="center"
+        android:hint="@string/EdtMainDes"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLength="12"
+        android:nextFocusForward="@id/plh_value" />
+
     <EditText
         android:id="@+id/plh_value"
         android:layout_width="@dimen/edtWidth"
         android:layout_height="@dimen/edtHeight"
-        android:gravity="center"
-        android:background="@drawable/shape_btn_false"
+        android:layout_marginTop="20dp"
+        android:autofillHints="00"
 
-        android:singleLine="true"
+        android:background="@drawable/shape_btn_false"
         android:focusable="true"
 
+        android:gravity="center"
         android:hint="@string/EdtMainVaulue"
-        android:maxLength="12"
         android:inputType="number"
-        android:layout_marginTop="20dp"
-        android:autofillHints="00" />
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="wrap_content"
+        android:maxLength="7"
+        android:singleLine="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_gasto"
+            style="@style/ok"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
 
-        android:text="@string/btnSend"
-        android:background="@drawable/shape_btn_true"
+            android:layout_margin="20dp"
+            android:background="@drawable/shape_btn_expenses"
+
+            android:drawablePadding="20dp"
+            android:text="@string/btnGasto" />
+        <Button
+        android:id="@+id/btn_ganancia"
         style="@style/ok"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
 
-
+        android:layout_margin="20dp"
+        android:background="@drawable/shape_btn_true"
 
         android:drawablePadding="20dp"
-        android:drawableEnd="@drawable/send"
-        android:drawableRight="@drawable/send" />
+        android:text="@string/btnGanancia" />
+    </LinearLayout>
+
+
+
     <ImageView
         android:id="@+id/myAccount"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:src="@drawable/person"
         android:layout_marginTop="20dp"
-        android:contentDescription="@string/persoDes" />
-
-
-
+        android:contentDescription="@string/persoDes"
+        android:src="@drawable/person" />
 
 
 </LinearLayout>

@@ -16,3 +16,4 @@ fun getdate(): String {
 fun verification(view: EditText):Boolean {
     return view.text.toString().isEmpty()
 }
+

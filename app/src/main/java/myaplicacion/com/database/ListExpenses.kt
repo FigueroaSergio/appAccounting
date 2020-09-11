@@ -1,6 +1,9 @@
 package myaplicacion.com.database
 
 
+import android.content.Context
+import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,27 +15,48 @@ class ListExpenses : AppCompatActivity(),myListAdapter.onClickListener {
     lateinit var accountsDao: AccountsDao
     lateinit var myListAdapter: myListAdapter
 
+    val key="Cuentas"
+    val ahorro="Ahorro"
+    val gastos="Gastos"
+    lateinit var sharedPreferences: SharedPreferences
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_expenses)
 
+        sharedPreferences = getSharedPreferences(key,Context.MODE_PRIVATE)
+
         accountsDao = appDatabase.getInstance(this).accountsDao()
 
         val datos = ArrayList<Accounts>(accountsDao.getAccounts())
-        myListAdapter = myListAdapter(datos,this)
+        myListAdapter = myListAdapter(datos,this,this)
 
         viewDatabse.adapter= myListAdapter
         viewDatabse.layoutManager=LinearLayoutManager(this)
-
-       printTotal(datos)
-    }
-    fun printTotal(datos:ArrayList<Accounts>){
-        var total =0
-        for (i in datos){
-            val x = i.price
-            total += x
+        var contador=false
+        printTotal(false)
+        detail.setOnClickListener{
+            contador = !contador
+            printTotal(contador)
         }
-        viewtotal.setText(total.toString())
+
+    }
+    fun printTotal(bool: Boolean){
+        val datos:Long
+        if(bool){
+            datos =sharedPreferences.getLong(ahorro,0)
+        textTotal.setTextColor(Color.parseColor("#03DA64"))
+        textTotal.setText("Ahorros: ")}
+        else
+           {
+               datos = sharedPreferences.getLong(gastos, 0)
+               textTotal.setTextColor(Color.parseColor("#FF4040"))
+               textTotal.text = "Gastos: "
+           }
+        viewtotal.setText(datos.toString())
+
+
     }
 
     override fun onItemClick(dato:Accounts,position:Int) {
@@ -49,10 +73,27 @@ class ListExpenses : AppCompatActivity(),myListAdapter.onClickListener {
 
         customdialog.setDialogButtonListener(object : CustomDialog.DialogClickListener{
             override fun onPositiveBtn() {
+                val editor = sharedPreferences.edit()
+                var miAhorro = sharedPreferences.getLong(ahorro, 0L)
+                var misGastos = sharedPreferences.getLong(gastos, 0L)
+                val price= dato.price
+                val bool = dato.moreOrless
                 accountsDao.deleteAccount(dato)
                 myListAdapter.eliminarItem(position)
                 myListAdapter.rechargerNumber()
-                printTotal(myListAdapter.getElements())
+                if (bool){
+                    miAhorro-=price
+                    editor.putLong(ahorro,miAhorro)
+                    editor.apply()
+                }
+                else{
+                    misGastos+=price
+                    miAhorro+=price
+                    editor.putLong(gastos,misGastos)
+                    editor.putLong(ahorro,miAhorro)
+                    editor.apply()
+                }
+                printTotal(bool)
                 customdialog.dismiss()
             }
 
